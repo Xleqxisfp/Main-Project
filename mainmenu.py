@@ -1,5 +1,4 @@
 from tkinter import *
-import pausemenu
 
 canvasWidth = 1000
 canvasHeight = 700
@@ -10,24 +9,33 @@ canvas = Canvas(window, width=canvasWidth, height=canvasHeight)
 canvas.config(bg="black")
 canvas.pack()
 
+leftArrow = PhotoImage(file="arrowleft.gif")
+rightArrow = PhotoImage(file="arrowright.gif")
+backgroundImage = PhotoImage(file="background.gif")
+
 class MainMenu():
     def __init__(self):
         self.menuSelect = 1
         self.mainRunning = True
+
     def mainMenu(self):
         #in an if statement because keeps
         #putting menu on screen otherwise
         if self.mainRunning:
             canvas.delete(ALL)
+            canvas.create_image(375, 250, image=backgroundImage)
             if self.menuSelect == 1:
-                canvas.create_rectangle(325, 250, 700, 300, fill="white")
+                canvas.create_image(600, 225, image=leftArrow)
+                canvas.create_image(415, 225, image=rightArrow)
             if self.menuSelect == 2:
-                canvas.create_rectangle(325, 350, 700, 400, fill="white")
+                canvas.create_image(635, 325, image=leftArrow)
+                canvas.create_image(375, 325, image=rightArrow)
             if self.menuSelect == 3:
-                canvas.create_rectangle(325, 450, 700, 500, fill="white")
-            canvas.create_text(510, 275, text="Play", font=(None, 25), fill="red")
-            canvas.create_text(510, 375, text="Settings", font=(None, 25), fill="red")
-            canvas.create_text(510, 475, text="Quit", font=(None, 25), fill="red")
+                canvas.create_image(600, 425, image=leftArrow)
+                canvas.create_image(415, 425, image=rightArrow)
+            canvas.create_text(510, 225, text="Play", font=("Space Bd BT", 35), fill="red")
+            canvas.create_text(510, 325, text="Settings", font=("Space Bd BT", 35), fill="red")
+            canvas.create_text(510, 425, text="Quit", font=("Space Bd BT", 35), fill="red")
             window.after(16, self.mainMenu)
 
     def menuDown(self, event):

@@ -1,14 +1,17 @@
 from tkinter import *
-import mainmenu
 
 canvasWidth = 1000
 canvasHeight = 700
 
 window = Tk()
-window.title("main menu")
+window.title("pause menu")
 canvas = Canvas(window, width=canvasWidth, height=canvasHeight)
 canvas.config(bg="black")
 canvas.pack()
+
+leftArrow = PhotoImage(file="arrowleft.gif")
+rightArrow = PhotoImage(file="arrowright.gif")
+backgroundImage = PhotoImage(file="background.gif")
 
 class PauseMenu():
     def __init__(self):
@@ -17,15 +20,19 @@ class PauseMenu():
     def pauseMenu(self):
         if self.mainRunning:
             canvas.delete(ALL)
+            canvas.create_image(375, 250, image=backgroundImage)
             if self.menuSelect == 1:
-                canvas.create_rectangle(325, 250, 700, 300, fill="white")
+                canvas.create_image(615, 250, image=leftArrow)
+                canvas.create_image(400, 250, image=rightArrow)
             if self.menuSelect == 2:
-                canvas.create_rectangle(325, 350, 700, 400, fill="white")
+                canvas.create_image(600, 350, image=leftArrow)
+                canvas.create_image(415, 350, image=rightArrow)
             if self.menuSelect == 3:
-                canvas.create_rectangle(325, 450, 700, 500, fill="white")
-            canvas.create_text(510, 275, text="Resume", font=(None, 25), fill="red")
-            canvas.create_text(510, 375, text="Restart", font=(None, 25), fill="red")
-            canvas.create_text(510, 475, text="Main Menu", font=(None, 25), fill="red")
+                canvas.create_image(630, 450, image=leftArrow)
+                canvas.create_image(390, 450, image=rightArrow)
+            canvas.create_text(510, 250, text="Resume", font=("Space Bd BT", 25), fill="red")
+            canvas.create_text(510, 350, text="Restart", font=("Space Bd BT", 25), fill="red")
+            canvas.create_text(510, 450, text="Main Menu", font=("Space Bd BT", 25), fill="red")
             window.after(16, self.pauseMenu)
 
     def menuDown(self, event):
